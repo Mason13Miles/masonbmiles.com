@@ -4,40 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>masonbmiles.com</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>masonbmiles.com</h1>
-    </header>
+    <!-- <header>
+        <h1>Snooping around I see! Remember im just a beginner haha! Give me some feedback on how I can improve and get up to industry standard for my frontend! e/acc baby!</h1>
+    </header> -->
 
-    <nav>
-        <ul>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <section id="main-navigation">
+        <div id="logo" class="fifty-percent-div">
+            <img width="auto" height="auto" src="https://img.playbook.com/ts6pB8lMO9UOhdBc8vP0HXOTSEcPsTXSomTa0SH45uo/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzEwMDcyMjA4/LTM5ZGUtNGJlZS1h/OWMyLTdlMmQ4NjNl/MTk5NQ" alt="" class="responsive-logo"/>
+        </div>
+
+        <div id="main-menu" class="fifty-percent-div">
+            <nav id="nav-menu" class="fifty-percent-div">
+
+                <a id="projects-button" class="button" href="#projects-section">Projects</a>
+                <a id="road-map-button" class="button" href="#roadmap-section">Road Map</a>
+                <a id="feedback-button" class="button" href="#feedback-section">Feedback ➡</a>
+
+            </nav>
+        </div>
+    </section>
 
     <main>
-        <section>
-            <div>
-                <h2>About Me</h2>
+        <section id="hero-section">
+            <div id="about-me-div">
+                <div id="about-me-image">
+                    <img width="auto" height="auto" src="https://img.playbook.com/xfzQ_IzoPt9Z_DxLcZw7N20GSEmpSwxHbNTlp2uYHJY/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzY0Y2U3MTJm/LThiNzgtNGRjZi1h/YTYxLTA2MDk1Mjc2/MjJjMw" alt="" class="responsive-photo" />
+                </div>
+                <div id="about-me-text">
+                    <h2>About Me</h2>
+                    <p>I am a software engineer with a passion for building products that help people live better lives. I am a full stack developer with a focus on building scalable and secure applications. I am a quick learner and a team player. I am a problem solver and I am always looking for new challenges. </p>
+                </div>
+
             </div>
-            <div>
-                <h2>Projects</h2>
+            <div id="projects-div">
+                <!-- Add background image for the computer screen -->
+                <div id="projects-image">
+                    <img width="auto" height="auto" src="https://img.playbook.com/DVkga4rVqTciiu7iBu-JshAJQuq1bfg_pVJTzcwfX6Y/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzIyYzE0YjQ5/LTcxMDItNDk1ZC04/NzliLWQzOTAxYTcx/N2Q3Yg" alt="" class="responsive-hero" />
+                </div>
+                <div id="video-container">
+                    <iframe id="video-frame" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <div id="dock-bar">
+
+                    <div class="app-icons">
+                        <div class="app-icon" id="famlinked" data-video="https://www.youtube.com/watch?v=-k0AnyvgKGk">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="planner">        
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="file-storage">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="x-marks-the-spot">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="app5">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="tutorial-project">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="app7">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                        <div class="app-icon" id="app8">
+                            <img src="https://img.playbook.com/xVje8lEodyULIZrRvUgetEVTet_mw0byUorKw4kGD6w/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzRhNDYyYzRh/LTZmMDEtNDBmNi1i/YTEyLTk5MTQxZDdm/NzZhZg" alt="" class="responsive-app-icon">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
 
-        <section>
-            <h2>Blog</h2>
+        <section id="roadmap-section">
+            <!-- Left side: Event Details -->
+            
+            <div id="selected-event">
+                <h1>Goals and Roadmap</h1>
+              <p id="event-info">No event selected</p>
+            </div>
+            <!-- Right side: Calendar -->
+            <div id="calendar-page">
+                <div id="calendar-months">
+                    <div id="month0" class="month-box"><h3></h3></div>
+                    <div id="month1" class="month-box"><h3></h3></div>
+                    <div id="month2" class="month-box"><h3></h3></div>
+                    <div id="month3" class="month-box"><h3></h3></div>
+                    <div id="month4" class="month-box"><h3></h3></div>
+                    <div id="month5" class="month-box"><h3></h3></div>
+                    <div id="month6" class="month-box"><h3></h3></div>
+                    <div id="month7" class="month-box"><h3></h3></div>
+                    <div id="month8" class="month-box"><h3></h3></div>
+                    <div id="month9" class="month-box"><h3></h3></div>
+                    <div id="month10" class="month-box"><h3></h3></div>
+                    <div id="month11" class="month-box"><h3></h3></div>
+                    
+                </div>
+              <div id="calendar-grid">
+
+              </div>
+            </div>
+          </section>
+          
+
+        <section id="feedback-section">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/243386570175159"></script>
         </section>
 
+</main>
 
-    </main>
 
     <footer>
         <p>Copyright &copy; 2024 masonbmiles.com</p>
     </footer>
+    <script src="scripts.js"></script>
 </body>
 </html>
