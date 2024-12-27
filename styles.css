@@ -42,7 +42,6 @@ section {
     align-items: center;
     margin-top: 3%;
     height: auto;
-
 }
 
 p {
@@ -82,6 +81,12 @@ p {
     object-fit: cover; 
 }
 
+.responsive-photo-2 {
+    border-radius: 50%;
+    width: 20%;
+    height: auto;
+    
+}
 
 .responsive-hero {
     width: 100%;
@@ -113,6 +118,12 @@ p {
     z-index: 12; 
 }
 
+.responsive-project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 .app-icon:hover {
     transform: scale(1.4); 
 }
@@ -120,20 +131,17 @@ p {
 /* NAVIGATION */
 #main-navigation {
     background-color: #3e4560;
-
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 #main-menu {
-    /* background-color: #fffff9; */
     display: flex;
     align-items: center;
 }   
 
 #nav-menu {
-    /* background-color: #fffff9; */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -151,10 +159,9 @@ p {
 } 
 
 #road-map-button {
-
     border: 2px solid #ed4545;
+    width: auto 50px;
     border-radius: 20px;
-
     color: #fffff9;
 }
 
@@ -177,9 +184,10 @@ p {
 }
 
 /* HERO SECTION */
+
 #hero-section {
     background-color: #ffffff;
-    display: flexbox;
+    display: flex;
     flex-direction: row;
     width: auto;
     height: auto;
@@ -206,6 +214,7 @@ p {
     margin: 10px 0;
 }   
 
+
 #projects-div {
     background-color: #ffffff;
     width: 70%;
@@ -220,37 +229,126 @@ p {
     text-align: center; 
 }
 
-  #video-container {
-    z-index: 2;
-    position: absolute;
-    top: 9%;
-    left: 7%;
-    width: 86%;
-    height: 50%;
-    border-radius: 10px;
+#video-container {
+  z-index: 2;
+  position: absolute;
+  top: 9%;
+  left: 7%;
+  width: 86%;
+  height: 50%;
+  border-radius: 10px;
 }
 
 #dock-bar {
-    background-color: #23455b;
-    position: absolute;
-    top: 61%;
-    left: 12%;
-    width: 75%;
-    height: 10%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: center;
-    z-index: 2; 
-    transition: transform 0.3s ease;
-    transform-origin: bottom;
-    border-radius: 25px;
+  background-color: #23455b;
+  position: absolute;
+  top: 61%;
+  left: 12%;
+  width: 75%;
+  height: 10%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-end; 
+  align-items: center;
+  z-index: 2; 
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+  border-radius: 25px;
 }
 
 #dock-bar:hover {
     transform: scale(1.05);
 }
   
+/* ABOUT-ME SECTION */
+#about-me-section {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fffff9;
+  border-radius: 10px;
+}
+
+#about-me-spacer {
+  background-color: brown;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#about-me-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around; 
+  width: 100%;
+}
+#about-image {
+  width: 30%;
+  padding: 10px;
+}
+
+#about-image img {
+  border-radius: 50%;
+}
+
+#about-me-text-2  {
+  width: 100%;
+  padding: 10px;
+  padding-top: 0px;
+}
+/* PROJECTS SECTION */
+
+#projects-section {
+  background-color: #ed4545;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#projects {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  gap: 2%
+}
+
+.project {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.project-text {
+  width: 70%;
+}
+
+.project-stats {
+  width: 30%;
+  
+}
+
+#section-title-2 {
+  color: #fffff9;
+  padding-left: 10px;
+}
+
+.project-image {
+  width: 20%;
+  height: auto;
+}
+
 /* ROADMAP SECTION */
 #roadmap-section {
     display: flex;
@@ -289,17 +387,7 @@ p {
     box-sizing: border-box;
   }
   
-  @media screen and (max-width: 768px) {
-    #calendar-container {
-      display: none;
-    }
-    
-    #events {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
+
 
   .month-header-container {
     display: flex;
@@ -401,4 +489,36 @@ p {
     border-radius: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  #road-map-button, #feedback-button {
+      font-size: 0.8rem; 
+      padding: 5px;
+  }
+
+  #projects-button {
+      display: none;
+  }
+
+  #hero-section {
+    display: none !important;
+  }
+
+  #about-me-section {
+    display: flex !important; 
+  }
+
+  #projects-section {
+    display: flex !important; 
+  }
+
+  #calendar-container {
+    display: none;
+  }
+  
+  #events {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 

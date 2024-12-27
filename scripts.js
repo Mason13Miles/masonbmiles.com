@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Sample events data (replace with your actual data)
   const events = {
     '2025-11-28': { title: 'Demo', description: 'Demo of the new project' },
-    '2025-01-05': { title: 'Project Kickoff', description: 'Kickoff meeting for the new project' },
+    '2025-01-05': { title: 'Project Kickoff', description: 'Kickoff meeting for the new project. This is a really long description of something to test the spacing' },
     '2025-01-10': { title: 'Meeting with Team', description: 'Team meeting to discuss progress' },
     '2025-01-15': { title: 'Code Review Session', description: 'Reviewing the codebase' },
     '2025-01-22': { title: 'Presentation Preparation', description: 'Preparing for the presentation' },
