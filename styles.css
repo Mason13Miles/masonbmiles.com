@@ -13,7 +13,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 1%;
     margin: 0px auto;
     width: 100vw;
     max-width: 1440px; 
@@ -41,7 +40,9 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px auto
+    margin-top: 3%;
+    height: 500px auto;
+
 }
 
 p {
@@ -141,34 +142,38 @@ p {
 }  
 
 #projects-button {
-    color: 23455b;
+    color: #fffff9;
 }
 
 #projects-button:hover {
-    color: black;
-    text-decoration: underline;
+    color: #ed4545;
+    text-decoration: none;
 } 
 
 #road-map-button {
-    background-color: #fffff9;
-    border: 2px solid #23455b;
+
+    border: 2px solid #ed4545;
     border-radius: 20px;
 
-    color: 23455b;
+    color: #fffff9;
 }
 
 #road-map-button:hover {
-    background-color: #6da7cc
+    background-color: #fffff9;
+    color: #3e4560;
 }
 
 #feedback-button {
-    background-color: #23455b;
+    background-color: #fffff9;
+    border: 2px solid #3e4560;
     border-radius: 20px;
-    color: #fffff9;
+    color: #23455b;
 }   
 
 #feedback-button:hover {
-    background-color:#6da7cc
+    border: 2px solid #fffff9;
+    background-color: #3e4560;
+    color: #fffff9;
 }
 
 /* HERO SECTION */
@@ -250,43 +255,71 @@ p {
 #roadmap-section {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    font-family: Arial, sans-serif;
-    height: auto;
-    margin-top: 5%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  @media (max-width: 1440px) {
+    #roadmap-section {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #selected-event {
+        margin-bottom: 2%;
+        margin-right: 0%;
+        /* width: auto; */
+    }
+
+    #calendar-page {
+        width: 100%;
+    }
+
   }
 
   #selected-event {
+    display: flex;
     padding: 10px;
-    /* border: 3px solid #; */
     border-radius: 10px;
-    background-color: #f9f9f9;
-    width: 30%;
-    height: 175px;
+    background-color: #fffff9;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
   }
 
   
   /* Right side styling */
   #calendar-page {
-    background-color: #ffffff;
-    width: 100%;
-    height: 175px;
-    /* border: 3px solid #ffffff; */
+    background-color: #000000;
+    height: auto;
     border-radius: 10px;
-    margin-left: 2%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    justify-content: start;
-
     padding: 10px;
   }
-  
-  #calendar-grid {
+
+  #calendar-months {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 80%;
+  }
+
+  
+  #month12 {
+    color: #fffff9;
+  }
+
+  #calendar-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
-    gap: 3px; 
+    gap: 0.5%;
   }
   
   .week {
@@ -296,8 +329,8 @@ p {
   }
   
   .calendar-cell {
-    width: 15px;
-    height: 15px;
+    width: 0.75vw;
+    height: 0.75vw;
     background-color: #3e4560; /* Default background */
     border-radius: 2px;
 
@@ -306,21 +339,22 @@ p {
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
 
-.calendar-cell[data-month="0"] { background-color: #e12c2c; }
-.calendar-cell[data-month="1"] { background-color: #fce5cd; }
-.calendar-cell[data-month="2"] { background-color: #e3b733; }
-.calendar-cell[data-month="3"] { background-color: #d9ead3; }
-.calendar-cell[data-month="4"] { background-color: #d0e0e3; }
-.calendar-cell[data-month="5"] { background-color: #c9daf8; }
-.calendar-cell[data-month="6"] { background-color: #cfe2f3; }
-.calendar-cell[data-month="7"] { background-color: #d9d2e9; }
-.calendar-cell[data-month="8"] { background-color: #ead1dc; }
-.calendar-cell[data-month="9"] { background-color: #f4cccc; }
-.calendar-cell[data-month="10"] { background-color: #f6cbcd; }
-.calendar-cell[data-month="11"] { background-color: #fce5cd; }
+.calendar-cell[data-month="0"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="1"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="2"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="3"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="4"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="5"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="6"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="7"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="8"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="9"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="10"] { background-color: #d4d7d6; }
+.calendar-cell[data-month="11"] { background-color: #d4d7d6; }
+
   
 .calendar-cell[data-event="true"] {
-    background-color: #ed4545;
+    background-color: #3e4560;
   }
   
   .day-number[data-event="true"] {
@@ -340,34 +374,16 @@ p {
     font-size: 8px;
     color: #e7edeb;
   }
-  
-  
-  #calendar-months {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-  }
 
   .month-box {
-    align-items: start;
-    justify-content: start;
     color: #ed4545;
   }
-
-  #month12 {
-    font-size: 1px;
-  }
-
-
 
 /* FEEDBACK SECTION */
 #feedback-section {
     background-color: #e7edeb;
     height: auto;
-    margin-top: 5%;
     border-radius: 10px;
-    padding: 2%;
 }  
 
 
