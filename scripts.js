@@ -21,26 +21,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const calendarContainer = document.getElementById('calendar-container');
   const calendarGrid = document.getElementById('calendar-grid');
+  const eventsContainer = document.getElementById('events');
 
   // Sample events data (replace with your actual data)
-   const events = {
-      '2025-11-28': 'Demo',
-      '2025-01-05': 'Project Kickoff',
-      '2025-01-10': 'Meeting with Team',
-      '2025-01-15': 'Code Review Session',
-      '2025-01-22': 'Presentation Preparation',
-      '2025-01-30': 'Presentation Day',
-      '2025-02-05': 'Sprint Retrospective',
-      '2025-02-10': 'Code Review Session',
-      '2025-02-22': 'Sprint Planning',
-      '2025-02-28': 'UI design changes',
-      '2025-12-05': 'Demo day',
-      '2025-03-07': 'Testing session',
-      '2025-11-01': 'Code Review Session',
-      '2025-04-15': 'Meeting with Team',
-      '2025-05-01': 'Project End',
-      '2025-05-03': 'Code Review Session',
-      '2025-05-15': 'New Project',
+  const events = {
+    '2025-11-28': { title: 'Demo', description: 'Demo of the new project' },
+    '2025-01-05': { title: 'Project Kickoff', description: 'Kickoff meeting for the new project' },
+    '2025-01-10': { title: 'Meeting with Team', description: 'Team meeting to discuss progress' },
+    '2025-01-15': { title: 'Code Review Session', description: 'Reviewing the codebase' },
+    '2025-01-22': { title: 'Presentation Preparation', description: 'Preparing for the presentation' },
+    '2025-01-30': { title: 'Presentation Day', description: 'Presenting the project' },
+    '2025-02-05': { title: 'Sprint Retrospective', description: 'Retrospective meeting for the sprint' },
+    '2025-02-10': { title: 'Code Review Session', description: 'Reviewing the codebase' },
+    '2025-02-22': { title: 'Sprint Planning', description: 'Planning the next sprint' },
+    '2025-02-28': { title: 'UI design changes', description: 'Implementing UI design changes' },
+    '2025-12-05': { title: 'Demo day', description: 'Demo of the final product' },
+    '2025-03-07': { title: 'Testing session', description: 'Testing the application' },
+    '2025-11-01': { title: 'Code Review Session', description: 'Reviewing the codebase' },
+    '2025-04-15': { title: 'Meeting with Team', description: 'Team meeting to discuss progress' },
+    '2025-05-01': { title: 'Project End', description: 'End of the project' },
+    '2025-05-03': { title: 'Code Review Session', description: 'Reviewing the codebase' },
+    '2025-05-15': { title: 'New Project', description: 'Starting a new project' },
   };
 
   // Get today's date and calculate start date of the first column
@@ -71,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           let tooltipText = `No events for ${formattedDate}`;
           if (events[dateString]) {
-              dayBox.setAttribute('data-event', events[dateString]);
-               tooltipText = `${events[dateString]} on ${formattedDate}`;
+              dayBox.setAttribute('data-event', events[dateString].title);
+               tooltipText = `${events[dateString].title} on ${formattedDate}`;
           }
 
           dayBox.addEventListener('mousemove', (event) => showTooltip(event, tooltipText, event));
@@ -98,7 +99,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
       calendarContainer.insertBefore(monthHeaderContainer, calendarContainer.firstChild);
 
+  // Filter and sort events to get the next 5 events from today
+  const upcomingEvents = Object.entries(events)
+    .map(([date, details]) => ({ date: new Date(date), ...details }))
+    .filter(event => event.date >= today)
+    .sort((a, b) => a.date - b.date)
+    .slice(0, 5);
 
+  // Display the next 5 events
+  upcomingEvents.forEach(event => {
+    const eventColumn = document.createElement('div');
+    eventColumn.classList.add('event-column');
+
+    const eventTitle = document.createElement('div');
+    eventTitle.classList.add('event-title');
+    eventTitle.textContent = event.title;
+
+    const eventDate = document.createElement('div');
+    eventDate.classList.add('event-date');
+    eventDate.textContent = event.date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    const eventDescription = document.createElement('div');
+    eventDescription.classList.add('event-description');
+    eventDescription.textContent = event.description;
+
+    eventColumn.appendChild(eventTitle);
+    eventColumn.appendChild(eventDate);
+    eventColumn.appendChild(eventDescription);
+
+    eventsContainer.appendChild(eventColumn);
+  });
 
   // Tooltip functions
   function showTooltip(event, eventDescription, mouseEvent) {

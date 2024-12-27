@@ -266,20 +266,18 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    background-color: #000ffd;
   }
 
   #section-title {
-    background-color: #3e4560;
-  }
-
-  #event-info {
-    background-color: #000ffd;
+    padding-left: 10px;
   }
 
   #events {
-    height: 175px;
+    padding: 10px;
+    height: 150px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5%;
   }
 
   #calendar-container {
@@ -291,8 +289,19 @@ p {
     box-sizing: border-box;
   }
   
+  @media screen and (max-width: 768px) {
+    #calendar-container {
+      display: none;
+    }
+    
+    #events {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
   .month-header-container {
-    background-color: #000ffd;
     display: flex;
     flex-direction: row;
     justify-content: space-between; /* Change this to space-between */
@@ -357,6 +366,33 @@ p {
     white-space: nowrap;
     z-index: 10;
   }
+
+.event-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+}
+
+.event-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.event-description {
+    font-size: 0.9em;
+    color: #333;
+}
 
 /* FEEDBACK SECTION */
 #feedback-section {
