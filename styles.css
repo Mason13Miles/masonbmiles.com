@@ -41,7 +41,7 @@ section {
     justify-content: center;
     align-items: center;
     margin-top: 3%;
-    height: 500px auto;
+    height: auto;
 
 }
 
@@ -254,129 +254,108 @@ p {
 /* ROADMAP SECTION */
 #roadmap-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-  }
-
-  @media (max-width: 1440px) {
-    #roadmap-section {
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-
-    #selected-event {
-        margin-bottom: 2%;
-        margin-right: 0%;
-        /* width: auto; */
-    }
-
-    #calendar-page {
-        width: 100%;
-    }
-
-  }
-
-  #selected-event {
-    display: flex;
-    padding: 10px;
-    border-radius: 10px;
     background-color: #fffff9;
+    border-radius: 10px;
+  }
+
+  #up-next-section {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-right: 2%;
+    background-color: #000ffd;
   }
 
-  
-  /* Right side styling */
-  #calendar-page {
-    background-color: #000000;
-    height: auto;
-    border-radius: 10px;
+  #section-title {
+    background-color: #3e4560;
+  }
+
+  #event-info {
+    background-color: #000ffd;
+  }
+
+  #events {
+    height: 175px;
+  }
+
+  #calendar-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    font-family: Arial, sans-serif;
+    width: 100%;
     padding: 10px;
+    box-sizing: border-box;
   }
-
-  #calendar-months {
+  
+  .month-header-container {
+    background-color: #000ffd;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+    justify-content: space-between; /* Change this to space-between */
+    width: 100%;
+    margin-bottom: 10px;
   }
-
   
-  #month12 {
-    color: #fffff9;
+  .month-header {
+    flex: 1;
+    font-size: 0.8em;
+    white-space: nowrap;
+    color: gray;
   }
-
+  
   #calendar-grid {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
-    gap: 0.5%;
+    gap: 0.5%; 
   }
   
-  .week {
+  .calendar-week {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    width: calc(100% / 52);
   }
   
-  .calendar-cell {
-    width: 0.75vw;
-    height: 0.75vw;
-    background-color: #3e4560; /* Default background */
-    border-radius: 2px;
-
-    position: relative;
+  .day-box {
+    width: 100%;
+    height: 20px;
+    margin: 1px 0;
+    border: 1px solid #e1e4e8;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-
-.calendar-cell[data-month="0"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="1"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="2"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="3"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="4"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="5"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="6"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="7"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="8"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="9"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="10"] { background-color: #d4d7d6; }
-.calendar-cell[data-month="11"] { background-color: #d4d7d6; }
-
-  
-.calendar-cell[data-event="true"] {
-    background-color: #3e4560;
+    background-color: #ebedf0;
+    transition: background-color 0.3s ease;
   }
   
-  .day-number[data-event="true"] {
-    color: #ffffff;
-  }
-
-  .calendar-cell:hover {
-    transform: scale(1.2); 
+  .day-box[data-event] {
+    background-color: #9be9a8; /*  color */
   }
   
-  .day-number {
+  .day-box:hover {
+    border: 1px solid #6ba276;
+  }
+  
+  .day-box:hover[data-event] {
+    background-color: #40c463; /* light green color */
+  }
+  
+  .day-box:hover:not([data-event]) {
+    background-color: #f3f3f3; /*  light grey color */
+  }
+  
+  .tooltip {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* display: none; */
-    font-size: 8px;
-    color: #e7edeb;
-  }
-
-  .month-box {
-    color: #ed4545;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
   }
 
 /* FEEDBACK SECTION */
@@ -384,6 +363,6 @@ p {
     background-color: #e7edeb;
     height: auto;
     border-radius: 10px;
-}  
+}
 
 

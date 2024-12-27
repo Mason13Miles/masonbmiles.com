@@ -19,97 +19,106 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   });
 
-  // Calendar Functionality
-  const calendarGrid = document.getElementById("calendar-grid");
-  const eventInfo = document.getElementById("event-info");
+  const calendarContainer = document.getElementById('calendar-container');
+  const calendarGrid = document.getElementById('calendar-grid');
 
-  const events = {
-      "2024-12-25": "Christmas Celebration",
-      "2024-01-01": "New Year Party",
-      "2025-07-04": "Independence Day Event",
-      "2025-01-20": "FamLinked Launch" 
+  // Sample events data (replace with your actual data)
+   const events = {
+      '2025-11-28': 'Demo',
+      '2025-01-05': 'Project Kickoff',
+      '2025-01-10': 'Meeting with Team',
+      '2025-01-15': 'Code Review Session',
+      '2025-01-22': 'Presentation Preparation',
+      '2025-01-30': 'Presentation Day',
+      '2025-02-05': 'Sprint Retrospective',
+      '2025-02-10': 'Code Review Session',
+      '2025-02-22': 'Sprint Planning',
+      '2025-02-28': 'UI design changes',
+      '2025-12-05': 'Demo day',
+      '2025-03-07': 'Testing session',
+      '2025-11-01': 'Code Review Session',
+      '2025-04-15': 'Meeting with Team',
+      '2025-05-01': 'Project End',
+      '2025-05-03': 'Code Review Session',
+      '2025-05-15': 'New Project',
   };
 
-  const currentDate = new Date();
-  const currentDayOfWeek = currentDate.getDay();
-  const startDate = new Date(currentDate);
-  startDate.setDate(currentDate.getDate() - currentDayOfWeek); 
+  // Get today's date and calculate start date of the first column
+  const today = new Date();
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay());
 
-  // Calculate the day of the week for the 1st of the month
-const firstDayOfMonth = new Date(startDate.getFullYear(), startDate.getMonth(), 1).getDay(); 
+  const numberOfWeeks = 52; // fixed 52 weeks
+  let currentDate = new Date(startOfWeek);
+   let monthHeaderContainer = document.createElement('div');
+   monthHeaderContainer.classList.add('month-header-container');
+   let currentMonth = null;
 
-// Add empty cells before the 1st of the month
-for (let i = 0; i < firstDayOfMonth; i++) {
-    const emptyCell = document.createElement("div");
-    emptyCell.classList.add("calendar-cell", "empty-cell"); // Add an "empty-cell" class for styling if needed
-    weekDiv.appendChild(emptyCell);
+  for (let week = 0; week < numberOfWeeks; week++) {
+      const weekDiv = document.createElement('div');
+      weekDiv.classList.add('calendar-week');
+
+      for (let day = 0; day < 7; day++) {
+          const dayBox = document.createElement('div');
+          dayBox.classList.add('day-box');
+
+          // Format the date for the cell and tooltip
+          const dateString = currentDate.toISOString().split('T')[0];
+          const formattedDate = currentDate.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric'
+          });
+
+          let tooltipText = `No events for ${formattedDate}`;
+          if (events[dateString]) {
+              dayBox.setAttribute('data-event', events[dateString]);
+               tooltipText = `${events[dateString]} on ${formattedDate}`;
+          }
+
+          dayBox.addEventListener('mousemove', (event) => showTooltip(event, tooltipText, event));
+           dayBox.addEventListener('mouseout', hideTooltip);
+
+
+          weekDiv.appendChild(dayBox);
+
+          // Check if we need a month header
+         if (currentMonth === null || currentMonth !== currentDate.getMonth()){
+               currentMonth = currentDate.getMonth();
+              const monthHeader = document.createElement('div');
+               monthHeader.classList.add('month-header');
+               monthHeader.textContent = currentDate.toLocaleDateString('en-US', { month: 'short' });
+               monthHeaderContainer.appendChild(monthHeader);
+              }
+
+
+          currentDate.setDate(currentDate.getDate() + 1);
+      }
+       calendarGrid.appendChild(weekDiv);
+   }
+
+      calendarContainer.insertBefore(monthHeaderContainer, calendarContainer.firstChild);
+
+
+
+  // Tooltip functions
+  function showTooltip(event, eventDescription, mouseEvent) {
+      let tooltip = document.getElementById('tooltip');
+      if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.id = 'tooltip';
+          tooltip.classList.add('tooltip');
+           document.body.appendChild(tooltip);
+       }
+      tooltip.textContent = eventDescription;
+      tooltip.style.display = 'block';
+        tooltip.style.top = `${mouseEvent.pageY + 10}px`;
+        tooltip.style.left = `${mouseEvent.pageX + 10}px`;
 }
 
-  for (let weekIndex = 0; weekIndex < 52; weekIndex++) {
-      const weekDiv = document.createElement("div");
-      weekDiv.classList.add("week");
-
-      for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
-          const cellDate = new Date(startDate);
-          cellDate.setDate(startDate.getDate() + weekIndex * 7 + dayIndex);
-
-          const cell = document.createElement("div");
-          cell.classList.add("calendar-cell");
-          cell.setAttribute("data-date", cellDate.toISOString().split("T")[0]);
-          cell.setAttribute("data-month", cellDate.getMonth()); // Add data-month attribute
-
-          if (events[cellDate.toISOString().split("T")[0]]) {
-              cell.setAttribute("data-event", "true");
-          }
-
-          const dayNumber = document.createElement("span");
-          dayNumber.classList.add("day-number");
-          dayNumber.textContent = cellDate.getDate();
-          cell.appendChild(dayNumber);
-
-          cell.addEventListener("click", function () {
-              document.querySelectorAll(".calendar-cell").forEach((c) => c.classList.remove("selected"));
-              cell.classList.add("selected");
-
-              const selectedDate = cell.getAttribute("data-date");
-
-              if (events[selectedDate]) {
-                  const eventDate = new Date(selectedDate);
-                  const options = { month: "long", day: "numeric" };
-                  const formattedDate = eventDate.toLocaleDateString("en-US", options);
-                  eventInfo.textContent = `${formattedDate}: ${events[selectedDate]}`;
-              } else {
-                  eventInfo.textContent = "No event scheduled";
-              }
-          });
-          weekDiv.appendChild(cell);
+  function hideTooltip() {
+     const tooltip = document.getElementById('tooltip');
+      if (tooltip) {
+          tooltip.style.display = 'none';
       }
-      calendarGrid.appendChild(weekDiv); 
   }
-
-  // Month Headers
-  const months = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
-
-  const currentMonthIndex = currentDate.getMonth();
-  const reorderedMonths = [];
-  for (let i = 0; i < months.length; i++) {
-      reorderedMonths.push(months[(currentMonthIndex + i) % months.length]);
-  }
-
-  reorderedMonths.forEach((month, index) => {
-      const monthDiv = document.getElementById(`month${index}`);
-      if (monthDiv) {
-          const monthHeader = monthDiv.querySelector("h3");
-          if (monthHeader) {
-              monthHeader.textContent = month;
-          }
-      }
-  });
 });
-  
-
-  
-  
