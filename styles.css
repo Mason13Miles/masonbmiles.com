@@ -500,18 +500,6 @@ p {
       display: none;
   }
 
-  #hero-section {
-    display: none !important;
-  }
-
-  #about-me-section {
-    display: flex !important; 
-  }
-
-  #projects-section {
-    display: flex !important; 
-  }
-
   #calendar-container {
     display: none;
   }
@@ -523,3 +511,17 @@ p {
   }
 }
 
+@media screen and (max-width: 950px) {
+
+  #hero-section {
+    display: none !important;
+  }
+
+  #about-me-section {
+    display: flex !important; 
+  }
+  
+  #projects-section {
+    display: flex !important; 
+  }
+}
