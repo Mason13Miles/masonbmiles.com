@@ -209,6 +209,8 @@ p {
 }
 #about-me-text {
     background-color: #ffffff;
+    text-align: left;
+    text-align: justify;
 }   
 
 #about-me-image {
@@ -357,8 +359,9 @@ p {
 
 .project-text-description {
   margin: 0;
-  width: 50%;
-  text-align: justify;
+  width: 80%;
+  text-align: left;
+  justify-content: flex-start
 }
 
 .project-image {
@@ -397,7 +400,7 @@ justify-content: center;
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: #fffff9;
+    background-color: #ffffff;
     border-radius: 10px;
   }
 
