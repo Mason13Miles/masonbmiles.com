@@ -215,7 +215,42 @@ document.addEventListener("DOMContentLoaded", function () {
             recaptchaInput.setAttribute('name', 'g-recaptcha-response');
             recaptchaInput.setAttribute('value', token);
             form.appendChild(recaptchaInput);
-            form.submit();
+
+            // Get form values
+            const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
+            const feedback = document.getElementById('feedback').value;
+            const email = document.getElementById('email').value;
+
+            // Create JSON object
+            const formData = {
+                feedbackType: feedbackType,
+                feedback: feedback,
+                email: email,
+                'g-recaptcha-response': token
+            };
+
+            // Convert to JSON string
+            const jsonData = JSON.stringify(formData);
+
+            // Send data to API Gateway endpoint
+            fetch('YOUR_API_GATEWAY_ENDPOINT', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response from Lambda function
+                console.log('Response:', data);
+                alert('Feedback submitted successfully.');
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error);
+                alert('An error occurred while submitting feedback.');
+            });
         });
     });
   });
