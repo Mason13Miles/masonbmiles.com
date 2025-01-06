@@ -626,6 +626,38 @@ input[type="submit"] {
   width: 30%;
 }
 
+#email-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+#recaptcha-submit-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#recaptcha-container {
+    margin-right: 1em;
+}
+
+#feedback-form input[type="submit"] {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#recaptcha-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
   #road-map-button, #feedback-button {
       font-size: 0.8rem; 

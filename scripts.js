@@ -204,4 +204,19 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Error:', error);
     });
   });
+
+  document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Leu4q8qAAAAAEeNBgJCmM3LG6ge9mJh2Tm1JY6z', {action: 'submit'}).then(function(token) {
+            const form = document.getElementById('feedback-form');
+            const recaptchaInput = document.createElement('input');
+            recaptchaInput.setAttribute('type', 'hidden');
+            recaptchaInput.setAttribute('name', 'g-recaptcha-response');
+            recaptchaInput.setAttribute('value', token);
+            form.appendChild(recaptchaInput);
+            form.submit();
+        });
+    });
+  });
 });
