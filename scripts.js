@@ -166,4 +166,42 @@ document.addEventListener("DOMContentLoaded", function () {
           tooltip.style.display = 'none';
       }
   }
+// Feedback Form
+  const form = document.getElementById('feedbackForm');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form values
+    const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
+    const feedback = document.getElementById('feedback').value;
+    const email = document.getElementById('email').value;
+
+    // Create JSON object
+    const formData = {
+      feedbackType: feedbackType,
+      feedback: feedback,
+      email: email
+    };
+
+    // Convert to JSON string
+    const jsonData = JSON.stringify(formData);
+
+    // Send data to backend (replace with your backend URL)
+    fetch('/your-backend-url', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonData
+    })
+    .then(response => {
+      // Handle response from backend
+      console.log('Response:', response);
+    })
+    .catch(error => {
+      // Handle errors
+      console.error('Error:', error);
+    });
+  });
 });

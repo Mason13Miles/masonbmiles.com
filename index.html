@@ -235,7 +235,32 @@
           
 
         <section id="feedback-section">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/243386570175159"></script>
+            <div id="feedback-container">
+                <h1>Feedback</h1>
+                <p>I would love to hear your thoughts, suggestions, concerns or problems with anything so I can improve!</p>    
+                <form id="feedback-form">
+                    <div>
+                    <label class="feedback-type-label">Feedback Type:</label>
+                        <div id="feedback-type">
+                            <label><input class="feedback-option" type="radio" name="feedbackType" value="comments" required> Comments</label>
+                            <label><input class="feedback-option" type="radio" name="feedbackType" value="suggestions" required> Suggestions</label>
+                            <label><input class="feedback-option" type="radio" name="feedbackType" value="questions" required> Questions</label>
+                        </div>
+                    </div>
+                
+                    <div>
+                    <label class="feedback-type-label" for="feedback">Describe Your Feedback:*</label>
+                    <textarea id="feedback" name="feedback" required></textarea>
+                    </div>
+                
+                    <div>
+                    <label class="feedback-type-label" for="email">E-mail:*</label>
+                    <input type="email" id="email" name="email" required>
+                    </div>
+                
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
         </section>
 
 </main>
