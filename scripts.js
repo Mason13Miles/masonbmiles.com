@@ -266,17 +266,27 @@ document.addEventListener("DOMContentLoaded", function () {
       canClickLikeButton = false;
       setTimeout(() => {
           canClickLikeButton = true;
-      }, 15000); // 15 seconds
+      }, 15000); 
   
       try {
-          const response = await fetch("/increment-like", {
+          const response = await fetch("https://your-api-gateway-endpoint.com", {
               method: "POST",
           });
+  
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+  
           const data = await response.json();
-          likeCountSpan.textContent = data.likeCount;
+          if (data.likeCount !== undefined) {
+              likeCountSpan.textContent = data.likeCount;
+          } else {
+              console.error("Invalid response format:", data);
+          }
       } catch (error) {
           console.error("Error incrementing like count:", error);
       }
   });
+  
 
 });
