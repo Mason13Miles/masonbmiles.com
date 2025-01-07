@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('feedback-form').addEventListener('submit', function(event) {
     event.preventDefault();
     grecaptcha.ready(function() {
-        grecaptcha.execute('6Leu4q8qAAAAAEeNBgJCmM3LG6ge9mJh2Tm1JY6z', {action: 'submit'}).then(function(token) {
+        grecaptcha.execute(process.env.RECAPTCHA_KEY, {action: 'submit'}).then(function(token) {
             const form = document.getElementById('feedback-form');
             const recaptchaInput = document.createElement('input');
             recaptchaInput.setAttribute('type', 'hidden');
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 15000); 
   
       try {
-          const response = await fetch("https://your-api-gateway-endpoint.com", {
+          const response = await fetch("https://your-api-gateway-endpoint.com", {  
               method: "POST",
           });
   
