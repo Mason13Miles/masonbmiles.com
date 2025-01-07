@@ -628,6 +628,24 @@ input[type="submit"] {
   width: 30%;
 }
 
+#like-counter {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#like-button {
+  border-radius: 20px;
+  border: 2px solid #ed4545;
+  width: 80px;
+  height: 50px;
+}
+
+#like-button:hover {
+  background-color: #23455b;
+  color: #ffffff;
+}
+
 #email-container {
     display: flex;
     flex-direction: column;
