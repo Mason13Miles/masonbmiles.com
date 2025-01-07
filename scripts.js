@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const jsonData = JSON.stringify(formData);
 
             // Send data to API Gateway endpoint
-            fetch('YOUR_API_GATEWAY_ENDPOINT', {
+            fetch(process.env.FEEDBACK_API_GATEWAY, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -258,9 +258,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize AWS SDK with your credentials and region
   AWS.config.update({
-    region: 'YOUR_AWS_REGION',
-    accessKeyId: 'YOUR_ACCESS_KEY_ID',
-    secretAccessKey: 'YOUR_SECRET_ACCESS_KEY'
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   });
 
   // Create a new DynamoDB client

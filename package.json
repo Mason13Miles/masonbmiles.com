@@ -13,5 +13,8 @@
         "node-fetch": "^2.6.1"
     },
     "author": "MasonMiles",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "dotenv-webpack": "^8.1.0"
+    }
 }
