@@ -256,62 +256,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  // Initialize AWS SDK with your credentials and region
-  AWS.config.update({
-    region: process.env.AWS_REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  let likeButton = document.getElementById("like-button");
+  let likeCountSpan = document.getElementById("like-count");
+  let canClickLikeButton = true;
+  
+  likeButton.addEventListener("click", async () => {
+      if (!canClickLikeButton) return;
+  
+      canClickLikeButton = false;
+      setTimeout(() => {
+          canClickLikeButton = true;
+      }, 15000); // 15 seconds
+  
+      try {
+          const response = await fetch("/increment-like", {
+              method: "POST",
+          });
+          const data = await response.json();
+          likeCountSpan.textContent = data.likeCount;
+      } catch (error) {
+          console.error("Error incrementing like count:", error);
+      }
   });
-
-  // Create a new DynamoDB client
-  const dynamodb = new AWS.DynamoDB.DocumentClient();
-  const tableName = process.env.LIKECOUNTER_DBTABLE; 
-
-  // Function to get the current like count from DynamoDB
-  async function getLikeCount() {
-    const params = {
-      TableName: tableName,
-      Key: { id: 'likes' } // Assuming you have an item with id 'likes' to store the count
-    };
-
-    try {
-      const data = await dynamodb.get(params).promise();
-      return data.Item ? data.Item.count : 0;
-    } catch (error) {
-      console.error('Error getting like count:', error);
-      return 0;
-    }
-  }
-
-  // Function to update the like count in DynamoDB
-  async function updateLikeCount(count) {
-    const params = {
-      TableName: tableName,
-      Key: { id: 'likes' },
-      UpdateExpression: 'SET #c = :count',
-      ExpressionAttributeNames: { '#c': 'count' },
-      ExpressionAttributeValues: { ':count': count }
-    };
-
-    try {
-      await dynamodb.update(params).promise();
-    } catch (error) {
-      console.error('Error updating like count:', error);
-    }
-  }
-
-  // Function to increment the like count and update the UI
-  async function incrementLikeCount() {
-    const currentCount = await getLikeCount();
-    const newCount = currentCount + 1;
-    await updateLikeCount(newCount);
-    document.getElementById('like-count').textContent = newCount;
-  }
-
-  // Initialize the like counter when the page loads
-  window.onload = async () => {
-    const initialCount = await getLikeCount();
-    document.getElementById('like-count').textContent = initialCount;
-  };
 
 });

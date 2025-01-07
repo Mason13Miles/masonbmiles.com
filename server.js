@@ -4,8 +4,15 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+dotenv.config();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/increment-like', (req, res) => {
+    likeCount += 1;
+    res.json({ likeCount });
+});
 
 app.post('/submit-feedback', async (req, res) => {
     const { feedbackType, feedback, email, 'g-recaptcha-response': recaptchaToken } = req.body;
