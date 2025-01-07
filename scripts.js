@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Create a new DynamoDB client
   const dynamodb = new AWS.DynamoDB.DocumentClient();
-  const tableName = 'YOUR_TABLE_NAME'; // Replace with your DynamoDB table name
+  const tableName = process.env.LIKECOUNTER_DBTABLE; 
 
   // Function to get the current like count from DynamoDB
   async function getLikeCount() {
