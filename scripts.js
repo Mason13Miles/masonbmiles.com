@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function ()
 
     document.getElementById("likeButton").addEventListener("click", async () => {
       try {
-          const response = await fetch(privateConfig.API_URL, {
+          const response = await fetch(privateConfig.LIKE_API_URL, {
               method: "GET",
               headers: {
                   "Content-Type": "application/json",
