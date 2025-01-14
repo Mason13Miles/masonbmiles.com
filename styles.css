@@ -646,6 +646,32 @@ input[type="submit"] {
   color: #ffffff;
 }
 
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#likeButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#likeButton:hover {
+  background-color: #45a049;
+}
+
+#likeCount {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+
 #email-container {
     display: flex;
     flex-direction: column;

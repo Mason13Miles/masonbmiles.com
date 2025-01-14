@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () 
+{ 
   // App Icon Functionality
   const appIcons = document.querySelectorAll(".app-icon");
   const videoContainer = document.getElementById("video-container");
@@ -167,154 +168,177 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   }
 // Feedback Form
-  const form = document.getElementById('feedbackForm');
+  // const form = document.getElementById('feedbackForm');
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+  // form.addEventListener('submit', function(event) {
+  //   event.preventDefault(); // Prevent default form submission
 
-    // Get form values
-    const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
-    const feedback = document.getElementById('feedback').value;
-    const email = document.getElementById('email').value;
+  //   // Get form values
+  //   const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
+  //   const feedback = document.getElementById('feedback').value;
+  //   const email = document.getElementById('email').value;
 
-    // Create JSON object
-    const formData = {
-      feedbackType: feedbackType,
-      feedback: feedback,
-      email: email
-    };
+  //   // Create JSON object
+  //   const formData = {
+  //     feedbackType: feedbackType,
+  //     feedback: feedback,
+  //     email: email
+  //   };
 
-    // Convert to JSON string
-    const jsonData = JSON.stringify(formData);
+  //   // Convert to JSON string
+  //   const jsonData = JSON.stringify(formData);
 
-    // Send data to backend (replace with your backend URL)
-    fetch('/your-backend-url', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: jsonData
-    })
-    .then(response => {
-      // Handle response from backend
-      console.log('Response:', response);
-    })
-    .catch(error => {
-      // Handle errors
-      console.error('Error:', error);
-    });
+  //   // Send data to backend (replace with your backend URL)
+  //   fetch('/your-backend-url', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: jsonData
+  //   })
+  //   .then(response => {
+  //     // Handle response from backend
+  //     console.log('Response:', response);
+  //   })
+  //   .catch(error => {
+  //     // Handle errors
+  //     console.error('Error:', error);
+  //   });
+  // });
+
+  // document.getElementById('feedback-form').addEventListener('submit', function(event) {
+  //   event.preventDefault();
+  //   grecaptcha.ready(function() {
+  //       grecaptcha.execute(process.env.RECAPTCHA_KEY, {action: 'submit'}).then(function(token) {
+  //           const form = document.getElementById('feedback-form');
+  //           const recaptchaInput = document.createElement('input');
+  //           recaptchaInput.setAttribute('type', 'hidden');
+  //           recaptchaInput.setAttribute('name', 'g-recaptcha-response');
+  //           recaptchaInput.setAttribute('value', token);
+  //           form.appendChild(recaptchaInput);
+
+  //           // Get form values
+  //           const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
+  //           const feedback = document.getElementById('feedback').value;
+  //           const email = document.getElementById('email').value;
+
+  //           // Create JSON object
+  //           const formData = {
+  //               feedbackType: feedbackType,
+  //               feedback: feedback,
+  //               email: email,
+  //               'g-recaptcha-response': token
+  //           };
+
+  //           // Convert to JSON string
+  //           const jsonData = JSON.stringify(formData);
+
+  //           // Send data to API Gateway endpoint
+  //           fetch(process.env.FEEDBACK_API_GATEWAY, {
+  //               method: 'POST',
+  //               headers: {
+  //                   'Content-Type': 'application/json'
+  //               },
+  //               body: jsonData
+  //           })
+  //           .then(response => response.json())
+  //           .then(data => {
+  //               // Handle response from Lambda function
+  //               console.log('Response:', data);
+  //               alert('Feedback submitted successfully.');
+  //           })
+  //           .catch(error => {
+  //               // Handle errors
+  //               console.error('Error:', error);
+  //               alert('An error occurred while submitting feedback.');
+  //           });
+  //       });
+  //   });
+  // });
+
+
+  // Elements
+  // let likeButton = document.getElementById("like-button");
+  // let likeCountSpan = document.getElementById("like-count");
+  // let canClickLikeButton = true;
+   const likeButtonAPIUrl = process.env.LIKE_BUTTON_API_URL;
+
+  // // Function to get the current like count when the page loads
+  // async function fetchLikeCount() {
+  //     try {
+  //         const response = await fetch(`${likeButtonAPIUrl}`, {
+  //             method: "GET",
+  //         });
+
+  //         if (!response.ok) {
+  //             throw new Error(`HTTP error! Status: ${response.status}`);
+  //         }
+
+  //         const data = await response.json();
+  //         if (data.count !== undefined) { // Ensure the response has the 'count' property
+  //             likeCountSpan.textContent = data.count;
+  //         } else {
+  //             console.error("Invalid response format:", data);
+  //         }
+  //     } catch (error) {
+  //         console.error("Error fetching like count:", error);
+  //     }
+  // }
+
+  // // Event listener for the like button
+  // likeButton.addEventListener("click", async () => {
+  //     if (!canClickLikeButton) return;
+
+  //     canClickLikeButton = false;
+  //     setTimeout(() => {
+  //         canClickLikeButton = true;
+  //     }, 15000); // Prevent button spamming for 15 seconds
+
+  //     try {
+  //         const response = await fetch(`${likeButtonAPIUrl}`, {
+  //             method: "PUT",
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //             },
+  //             body: JSON.stringify({}), // Send an empty JSON body
+  //         });
+
+  //         if (!response.ok) {
+  //             throw new Error(`HTTP error! Status: ${response.status}`);
+  //         }
+
+  //         const data = await response.json();
+  //         if (data.count !== undefined) { // Ensure the response has the 'count' property
+  //             likeCountSpan.textContent = data.count;
+  //         } else {
+  //             console.error("Invalid response format:", data);
+  //         }
+  //     } catch (error) {
+  //         console.error("Error incrementing like count:", error);
+  //     }
+  // });
+  // fetchLikeCount()
+
+    document.getElementById("likeButton").addEventListener("click", async () => {
+      try {
+          const response = await fetch(`${likeButtonAPIUrl}`, {
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+          });
+
+          if (!response.ok) {
+              throw new Error(`Error: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const likeCount = data.count || 0; // Fallback if count is not present
+          document.getElementById("likeCount").textContent = `Likes: ${likeCount}`;
+      } catch (error) {
+          console.error("Failed to fetch like count:", error);
+          document.getElementById("likeCount").textContent = "Error retrieving likes!";
+      }
   });
-
-  document.getElementById('feedback-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    grecaptcha.ready(function() {
-        grecaptcha.execute(process.env.RECAPTCHA_KEY, {action: 'submit'}).then(function(token) {
-            const form = document.getElementById('feedback-form');
-            const recaptchaInput = document.createElement('input');
-            recaptchaInput.setAttribute('type', 'hidden');
-            recaptchaInput.setAttribute('name', 'g-recaptcha-response');
-            recaptchaInput.setAttribute('value', token);
-            form.appendChild(recaptchaInput);
-
-            // Get form values
-            const feedbackType = document.querySelector('input[name="feedbackType"]:checked').value;
-            const feedback = document.getElementById('feedback').value;
-            const email = document.getElementById('email').value;
-
-            // Create JSON object
-            const formData = {
-                feedbackType: feedbackType,
-                feedback: feedback,
-                email: email,
-                'g-recaptcha-response': token
-            };
-
-            // Convert to JSON string
-            const jsonData = JSON.stringify(formData);
-
-            // Send data to API Gateway endpoint
-            fetch(process.env.FEEDBACK_API_GATEWAY, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: jsonData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle response from Lambda function
-                console.log('Response:', data);
-                alert('Feedback submitted successfully.');
-            })
-            .catch(error => {
-                // Handle errors
-                console.error('Error:', error);
-                alert('An error occurred while submitting feedback.');
-            });
-        });
-    });
-  });
-
-
-// Elements
-let likeButton = document.getElementById("like-button");
-let likeCountSpan = document.getElementById("like-count");
-let canClickLikeButton = true;
-const likeButtonAPIUrl = process.env.LIKE_BUTTON_API_URL;
-// Function to get the current like count when the page loads
-async function fetchLikeCount() {
-    try {
-        const response = await fetch(`${apiUrl}`, {
-            method: "GET",
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        if (data.count !== undefined) { // Ensure the response has the 'count' property
-            likeCountSpan.textContent = data.count;
-        } else {
-            console.error("Invalid response format:", data);
-        }
-    } catch (error) {
-        console.error("Error fetching like count:", error);
-    }
-}
-
-// Event listener for the like button
-likeButton.addEventListener("click", async () => {
-    if (!canClickLikeButton) return;
-
-    canClickLikeButton = false;
-    setTimeout(() => {
-        canClickLikeButton = true;
-    }, 15000); // Prevent button spamming for 15 seconds
-
-    try {
-        const response = await fetch(`${apiUrl}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({}), // Send an empty JSON body
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        if (data.count !== undefined) { // Ensure the response has the 'count' property
-            likeCountSpan.textContent = data.count;
-        } else {
-            console.error("Invalid response format:", data);
-        }
-    } catch (error) {
-        console.error("Error incrementing like count:", error);
-    }
-});
-
 
 });
