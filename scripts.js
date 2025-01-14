@@ -256,37 +256,67 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  let likeButton = document.getElementById("like-button");
-  let likeCountSpan = document.getElementById("like-count");
-  let canClickLikeButton = true;
-  
-  likeButton.addEventListener("click", async () => {
-      if (!canClickLikeButton) return;
-  
-      canClickLikeButton = false;
-      setTimeout(() => {
-          canClickLikeButton = true;
-      }, 15000); 
-  
-      try {
-          const response = await fetch("https://your-api-gateway-endpoint.com", {  
-              method: "POST",
-          });
-  
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-  
-          const data = await response.json();
-          if (data.likeCount !== undefined) {
-              likeCountSpan.textContent = data.likeCount;
-          } else {
-              console.error("Invalid response format:", data);
-          }
-      } catch (error) {
-          console.error("Error incrementing like count:", error);
-      }
-  });
-  
+// Elements
+let likeButton = document.getElementById("like-button");
+let likeCountSpan = document.getElementById("like-count");
+let canClickLikeButton = true;
+const likeButtonAPIUrl = process.env.LIKE_BUTTON_API_URL;
+// Function to get the current like count when the page loads
+async function fetchLikeCount() {
+    try {
+        const response = await fetch(`${apiUrl}`, {
+            method: "GET",
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (data.count !== undefined) { // Ensure the response has the 'count' property
+            likeCountSpan.textContent = data.count;
+        } else {
+            console.error("Invalid response format:", data);
+        }
+    } catch (error) {
+        console.error("Error fetching like count:", error);
+    }
+}
+
+// Event listener for the like button
+likeButton.addEventListener("click", async () => {
+    if (!canClickLikeButton) return;
+
+    canClickLikeButton = false;
+    setTimeout(() => {
+        canClickLikeButton = true;
+    }, 15000); // Prevent button spamming for 15 seconds
+
+    try {
+        const response = await fetch(`${apiUrl}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({}), // Send an empty JSON body
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (data.count !== undefined) { // Ensure the response has the 'count' property
+            likeCountSpan.textContent = data.count;
+        } else {
+            console.error("Invalid response format:", data);
+        }
+    } catch (error) {
+        console.error("Error incrementing like count:", error);
+    }
+});
+
+// Fetch the current like count when the page loads
+fetchLikeCount();
 
 });
