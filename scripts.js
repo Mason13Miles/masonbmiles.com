@@ -316,7 +316,5 @@ likeButton.addEventListener("click", async () => {
     }
 });
 
-// Fetch the current like count when the page loads
-fetchLikeCount();
 
 });
