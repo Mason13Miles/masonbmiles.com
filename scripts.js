@@ -1,3 +1,5 @@
+import privateConfig from "./config.js";
+
 document.addEventListener("DOMContentLoaded", function () 
 { 
   // App Icon Functionality
@@ -261,7 +263,6 @@ document.addEventListener("DOMContentLoaded", function ()
   // let likeButton = document.getElementById("like-button");
   // let likeCountSpan = document.getElementById("like-count");
   // let canClickLikeButton = true;
-   const likeButtonAPIUrl = process.env.LIKE_BUTTON_API_URL;
 
   // // Function to get the current like count when the page loads
   // async function fetchLikeCount() {
@@ -321,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function ()
 
     document.getElementById("likeButton").addEventListener("click", async () => {
       try {
-          const response = await fetch(`${likeButtonAPIUrl}`, {
+          const response = await fetch(privateConfig.API_URL, {
               method: "GET",
               headers: {
                   "Content-Type": "application/json",
