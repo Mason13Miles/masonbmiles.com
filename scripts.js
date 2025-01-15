@@ -260,86 +260,86 @@ document.addEventListener("DOMContentLoaded", function ()
 
 
   // Elements
-  // let likeButton = document.getElementById("like-button");
-  // let likeCountSpan = document.getElementById("like-count");
-  // let canClickLikeButton = true;
+  let likeButton = document.getElementById("like-button");
+  let likeCountSpan = document.getElementById("like-count");
+  let canClickLikeButton = true;
 
-  // // Function to get the current like count when the page loads
-  // async function fetchLikeCount() {
-  //     try {
-  //         const response = await fetch(`${likeButtonAPIUrl}`, {
-  //             method: "GET",
-  //         });
-
-  //         if (!response.ok) {
-  //             throw new Error(`HTTP error! Status: ${response.status}`);
-  //         }
-
-  //         const data = await response.json();
-  //         if (data.count !== undefined) { // Ensure the response has the 'count' property
-  //             likeCountSpan.textContent = data.count;
-  //         } else {
-  //             console.error("Invalid response format:", data);
-  //         }
-  //     } catch (error) {
-  //         console.error("Error fetching like count:", error);
-  //     }
-  // }
-
-  // // Event listener for the like button
-  // likeButton.addEventListener("click", async () => {
-  //     if (!canClickLikeButton) return;
-
-  //     canClickLikeButton = false;
-  //     setTimeout(() => {
-  //         canClickLikeButton = true;
-  //     }, 15000); // Prevent button spamming for 15 seconds
-
-  //     try {
-  //         const response = await fetch(`${likeButtonAPIUrl}`, {
-  //             method: "PUT",
-  //             headers: {
-  //                 "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify({}), // Send an empty JSON body
-  //         });
-
-  //         if (!response.ok) {
-  //             throw new Error(`HTTP error! Status: ${response.status}`);
-  //         }
-
-  //         const data = await response.json();
-  //         if (data.count !== undefined) { // Ensure the response has the 'count' property
-  //             likeCountSpan.textContent = data.count;
-  //         } else {
-  //             console.error("Invalid response format:", data);
-  //         }
-  //     } catch (error) {
-  //         console.error("Error incrementing like count:", error);
-  //     }
-  // });
-  // fetchLikeCount()
-
-    document.getElementById("likeButton").addEventListener("click", async () => {
+  // Function to get the current like count when the page loads
+  async function fetchLikeCount() {
       try {
           const response = await fetch(privateConfig.LIKE_API_URL, {
               method: "GET",
-              headers: {
-                  "Content-Type": "application/json",
-              },
           });
 
           if (!response.ok) {
-              throw new Error(`Error: ${response.status}`);
+              throw new Error(`HTTP error! Status: ${response.status}`);
           }
 
           const data = await response.json();
-          const likeCount = data.count || 0; // Fallback if count is not present
-          document.getElementById("likeCount").textContent = `Likes: ${likeCount}`;
+          if (data.count !== undefined) { // Ensure the response has the 'count' property
+              likeCountSpan.textContent = data.count;
+          } else {
+              console.error("Invalid response format:", data);
+          }
       } catch (error) {
-          console.error("Failed to fetch like count:", error);
-          document.getElementById("likeCount").textContent = "Error retrieving likes!";
+          console.error("Error fetching like count:", error);
+      }
+  }
+
+  // Event listener for the like button
+  likeButton.addEventListener("click", async () => {
+      if (!canClickLikeButton) return;
+
+      canClickLikeButton = false;
+      setTimeout(() => {
+          canClickLikeButton = true;
+      }, 15000); // Prevent button spamming for 15 seconds
+
+      try {
+          const response = await fetch(privateConfig.LIKE_API_URL, {
+              method: "PUT",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({}), // Send an empty JSON body
+          });
+
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          if (data.count !== undefined) { // Ensure the response has the 'count' property
+              likeCountSpan.textContent = data.count;
+          } else {
+              console.error("Invalid response format:", data);
+          }
+      } catch (error) {
+          console.error("Error incrementing like count:", error);
       }
   });
+  fetchLikeCount()
+
+  //   document.getElementById("likeButton").addEventListener("click", async () => {
+  //     try {
+  //         const response = await fetch(privateConfig.LIKE_API_URL, {
+  //             method: "GET",
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //             },
+  //         });
+
+  //         if (!response.ok) {
+  //             throw new Error(`Error: ${response.status}`);
+  //         }
+
+  //         const data = await response.json();
+  //         const likeCount = data.count || 0; // Fallback if count is not present
+  //         document.getElementById("likeCount").textContent = `Likes: ${likeCount}`;
+  //     } catch (error) {
+  //         console.error("Failed to fetch like count:", error);
+  //         document.getElementById("likeCount").textContent = "Error retrieving likes!";
+  //     }
+  // });
 
 });

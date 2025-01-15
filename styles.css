@@ -646,7 +646,7 @@ input[type="submit"] {
   color: #ffffff;
 }
 
-.container {
+/* .container {
   text-align: center;
   margin-top: 50px;
 }
@@ -669,7 +669,7 @@ input[type="submit"] {
   margin-top: 20px;
   font-size: 18px;
   color: #333;
-}
+} */
 
 
 #email-container {
