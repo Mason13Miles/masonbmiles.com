@@ -639,9 +639,16 @@ input[type="submit"] {
   border: 2px solid #ed4545;
   width: 80px;
   height: 50px;
+  align-content: center;
+  justify-content: center;
 }
 
 #like-button:hover {
+  background-color: #23455b;
+  color: #ffffff;
+}
+
+#like-button:click {
   background-color: #23455b;
   color: #ffffff;
 }
